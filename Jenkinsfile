@@ -8,11 +8,16 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '20'))
     }
+    tools {
+        nodejs 'nodejs18'
+    }
     stages {
-        stage('test') {
+        stage('nodejs') {
             steps {
                 sh '''
-                    echo "hello world"
+                    cd nodejs
+                    yarn install
+                    yarn build
                 '''
             }
         }
