@@ -34,7 +34,7 @@ pipeline {
                 dockerfile {
                     filename             'Dockerfile'
                     dir                  'docker/php'
-                    label                'jenkins'
+                    label                ''
                     additionalBuildArgs  ''
                     args                 ''
                 }   
