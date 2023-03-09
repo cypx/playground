@@ -53,8 +53,8 @@ pipeline {
                     args                 ''
                 }
             }
-            warnError('PHP tests failed!') {
-                steps {
+            steps {
+                warnError('PHP tests failed!') {
                     sh 'cd php && phpcs -p app/'
                 }
             }
