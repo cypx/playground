@@ -21,5 +21,13 @@ pipeline {
                 '''
             }
         }
+        stage('java') {
+            steps {
+                sh '''
+                    cd java
+                    ./gradlew build -x test
+                '''
+            }
+        }
     }
 }
