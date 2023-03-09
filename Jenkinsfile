@@ -40,8 +40,8 @@ pipeline {
                 }   
             }
             steps {
-                sh 'composer install --no-interaction'
-                sh 'phpcs -p app/'
+                sh 'cd php && composer install --no-interaction'
+                sh 'cd php && phpcs -p app/'
             }
         }
     }
