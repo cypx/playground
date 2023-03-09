@@ -29,7 +29,7 @@ pipeline {
                 '''
             }
         }
-        stage('php') {
+        stage('php init') {
             agent {
                 dockerfile {
                     filename             'Dockerfile'
@@ -41,6 +41,21 @@ pipeline {
             }
             steps {
                 sh 'cd php && composer install --no-interaction'
+            }
+        }
+        stage('php test') {
+            agent {
+                warnError('PHP tests failed!') {
+                    dockerfile {
+                        filename             'Dockerfile'
+                        dir                  'docker/php'
+                        label                ''
+                        additionalBuildArgs  ''
+                        args                 ''
+                    }
+                }
+            }
+            steps {
                 sh 'cd php && phpcs -p app/'
             }
         }
