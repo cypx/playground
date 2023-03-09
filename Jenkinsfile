@@ -29,5 +29,20 @@ pipeline {
                 '''
             }
         }
+        stage('php') {
+            agent {
+                dockerfile {
+                    filename             'Dockerfile'
+                    dir                  'docker/php'
+                    label                'jenkins'
+                    additionalBuildArgs  ''
+                    args                 ''
+                }   
+            }
+            steps {
+                sh 'composer install --no-interaction'
+                sh 'phpcs -p app/'
+            }
+        }
     }
 }
