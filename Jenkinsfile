@@ -45,18 +45,18 @@ pipeline {
         }
         stage('php test') {
             agent {
-                warnError('PHP tests failed!') {
-                    dockerfile {
-                        filename             'Dockerfile'
-                        dir                  'docker/php'
-                        label                ''
-                        additionalBuildArgs  ''
-                        args                 ''
-                    }
+                dockerfile {
+                    filename             'Dockerfile'
+                    dir                  'docker/php'
+                    label                ''
+                    additionalBuildArgs  ''
+                    args                 ''
                 }
             }
-            steps {
-                sh 'cd php && phpcs -p app/'
+            warnError('PHP tests failed!') {
+                steps {
+                    sh 'cd php && phpcs -p app/'
+                }
             }
         }
     }
